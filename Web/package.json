@@ -5,14 +5,21 @@
   "scripts": {
     "d": "webpack --mode development",
     "p": "webpack --mode production",
-    "g": "gulp webpack-dev"
+    "g": "gulp webpack-dev",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:types && npm run build:js"
   },
   "browserslist": [
     "defaults"
   ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "fancy-log": "^1.3.3",
@@ -22,7 +29,8 @@
     "ts-loader": "^8.0.11",
     "typescript": "^4.1.2",
     "webpack": "^5.8.0",
-    "webpack-cli": "^4.2.0"
+    "webpack-cli": "^4.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.4"
   },
   "dependencies": {
     "numeral": "^2.0.6"

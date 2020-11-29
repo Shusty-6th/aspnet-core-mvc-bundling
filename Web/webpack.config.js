@@ -1,6 +1,7 @@
 ﻿const path = require("path");
 var webpack = require("webpack");
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const dirName = "wwwroot/dist/js";
 
@@ -11,28 +12,35 @@ exports.config = (webpackOptions) => {
       home: "./ClientSrc/Scripts/Home/home.js",
       privacy: "./ClientSrc/Scripts/Privacy/privacy.js",
       test: "./ClientSrc/Scripts/test.js",
+      foo: "./ClientSrc/Scripts/Home/foo.ts",
     },
 
     mode: webpackOptions.isProduction === true ? "production" : "development",
     output: {
       filename: "[name].js",
-        // devtoolModuleFilenameTemplate: '[resource-path]', //it makes debuging in VS possible //[absolute-resource-path]
+      devtoolModuleFilenameTemplate: "[absolute-resource-path]", //it makes debuging in VS possible //[absolute-resource-path]
+      publicPath: "/assets/",
       path: path.resolve(__dirname, dirName),
     },
     watch: webpackOptions.watch === true,
     devtool: "source-map",
-    //resolve: {
-    //    extensions: [".ts"]
-    //},
+    resolve: {
+      extensions: [".ts", ".js"],
+    },
     module: {
       rules: [
         {
-          test: /\.m?js$/,
+          // test: /\.m?js$/,
+          test: /\.(js|ts)$/,
           exclude: /node_modules|bower_components/,
           use: {
             loader: "babel-loader",
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ["@babel/preset-env", "@babel/preset-typescript"],
+              plugins: [
+                "@babel/proposal-class-properties",
+                "@babel/proposal-object-rest-spread",
+              ],
             },
           },
         },
@@ -59,6 +67,8 @@ exports.config = (webpackOptions) => {
     //   }
 
     // ,
+
+    //plugins: [new ForkTsCheckerWebpackPlugin()],
     optimization: {
       // usedExports: true,
       splitChunks: {

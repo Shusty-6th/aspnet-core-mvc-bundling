@@ -18,24 +18,27 @@ let webpackOptions = {
 const webpackTask = function (done) {
   webpack(webpackConfig(webpackOptions), (err, stats) => {
     log("[webpackConfig]", webpackOptions);
+
     if (stats.compilation.errors.length > 0 || err) {
+      let errorMessage =
+        stats.compilation.errors[0] != null
+          ? stats.compilation.errors[0].message
+          : stats.compilation.errors;
+
       log("============================================================");
-      log(stats.compilation.errors[0].error.message);
+      log(errorMessage);
       log("============================================================");
 
-      if (webpackOptions.watch) {
+      if (webpackOptions.watch) { 
         notifier.notify({
           title: "Error",
-          message: stats.compilation.errors[0].error.message,
+          message: errorMessage,
           wait: true,
           open: "file://" + stats.compilation.errors[0].module.resource,
         });
       }
 
-      var pErr = new PluginError(
-        "[webpack]",
-        stats.compilation.errors[0].error.message
-      );
+      var pErr = new PluginError("[webpack]", errorMessage);
       log.error("[webpack]", stats.toString({ colors: true }));
 
       done(pErr);
