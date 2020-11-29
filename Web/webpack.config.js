@@ -16,7 +16,7 @@ exports.config = (webpackOptions) => {
     mode: webpackOptions.isProduction === true ? "production" : "development",
     output: {
       filename: "[name].js",
-      //devtoolModuleFilenameTemplate: '[absolute-resource-path]', //it makes debuging in VS possible //[resource-path]
+        // devtoolModuleFilenameTemplate: '[resource-path]', //it makes debuging in VS possible //[absolute-resource-path]
       path: path.resolve(__dirname, dirName),
     },
     watch: webpackOptions.watch === true,
@@ -60,6 +60,7 @@ exports.config = (webpackOptions) => {
 
     // ,
     optimization: {
+      // usedExports: true,
       splitChunks: {
         chunks: "all",
         minSize: 0,
