@@ -9,17 +9,18 @@ exports.config = (webpackOptions) => {
   //module.exports = (env, args) => {
   return {
     entry: {
-      home: "./ClientSrc/Scripts/Home/home.js",
-      privacy: "./ClientSrc/Scripts/Privacy/privacy.js",
-      test: "./ClientSrc/Scripts/test.js",
-      foo: "./ClientSrc/Scripts/Home/foo.ts",
+      // home: "./ClientSrc/Scripts/Home/home.js",
+      // privacy: "./ClientSrc/Scripts/Privacy/privacy.js",
+      // test: "./ClientSrc/Scripts/test.js",
+      foo: "./ClientSrc/Scripts/Foo/foo.ts",
+      fooSecondary: "./ClientSrc/Scripts/Foo/fooSecondary.ts",
     },
 
     mode: webpackOptions.isProduction === true ? "production" : "development",
     output: {
       filename: "[name].js",
       devtoolModuleFilenameTemplate: "[absolute-resource-path]", //it makes debuging in VS possible //[absolute-resource-path]
-      publicPath: "/assets/",
+      // publicPath: "/assets/",
       path: path.resolve(__dirname, dirName),
     },
     watch: webpackOptions.watch === true,
@@ -69,20 +70,26 @@ exports.config = (webpackOptions) => {
     // ,
 
     //plugins: [new ForkTsCheckerWebpackPlugin()],
+    // optimization: {
+    //   // usedExports: true,
+    //   splitChunks: {
+    //     chunks: "all",
+    //     minSize: 0,
+    //     name: "vendor",
+    //     cacheGroups: {
+    //       nodeModulesVendors: {
+    //         test: /[\\/]node_modules[\\/]/, // https://stackoverflow.com/a/52961891/3793141
+    //         name: "nodeModulesVendors",
+    //         chunks: "all",
+    //         minSize: 0,
+    //       },
+    //     },
+    //   },
+    // },
     optimization: {
-      // usedExports: true,
       splitChunks: {
         chunks: "all",
         minSize: 0,
-        name: "vendor",
-        cacheGroups: {
-          nodeModulesVendors: {
-            test: /[\\/]node_modules[\\/]/, // https://stackoverflow.com/a/52961891/3793141
-            name: "nodeModulesVendors",
-            chunks: "all",
-            minSize: 0,
-          },
-        },
       },
     },
   };

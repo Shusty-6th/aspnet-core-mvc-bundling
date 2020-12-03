@@ -2,16 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./ClientSrc/Scripts/Foo/foo.ts":
-/*!**************************************!*\
-  !*** ./ClientSrc/Scripts/Foo/foo.ts ***!
-  \**************************************/
+/***/ "./ClientSrc/Scripts/Foo/fooSecondary.ts":
+/*!***********************************************!*\
+  !*** ./ClientSrc/Scripts/Foo/fooSecondary.ts ***!
+  \***********************************************/
 /*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ FooClass; }
+/* harmony export */ });
 /* harmony import */ var _myCommon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../myCommon */ "./ClientSrc/Scripts/myCommon.ts");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19,61 +23,25 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-var Value = /*#__PURE__*/function () {
-  function Value() {
-    _classCallCheck(this, Value);
-
-    _defineProperty(this, "value", 10);
-
-    _defineProperty(this, "props", {
-      x: 0,
-      y: 0
-    });
+var FooClass = /*#__PURE__*/function () {
+  function FooClass() {
+    _classCallCheck(this, FooClass);
   }
 
-  _createClass(Value, [{
-    key: "getValue",
-    value: function getValue() {
-      return this.value;
-    }
-  }, {
-    key: "setValue",
-    value: function setValue(value) {
-      this.value = value;
-    }
-  }, {
-    key: "setProps",
-    value: function setProps(props) {
-      this.props = props;
-    }
-  }, {
-    key: "getProps",
-    value: function getProps() {
-      return this.props;
+  _createClass(FooClass, [{
+    key: "execute",
+    value: function execute() {
+      var a = "Its string in FooClass!";
+      console.log(a + (0,_myCommon__WEBPACK_IMPORTED_MODULE_0__.GetNumer)());
     }
   }]);
 
-  return Value;
+  return FooClass;
 }();
 
-var value = new Value();
-value.setValue(1008);
-value.getValue();
-var value1 = new Value();
-value1.setProps({
-  x: 1000,
-  y: 1000
-});
-value1.getProps();
-var a = "Its string in FOO!"; //a = 6;
 
-console.log(a + (0,_myCommon__WEBPACK_IMPORTED_MODULE_0__.GetNumer)());
-console.log(value.getValue());
-document.getElementById("input1").value = "foo.ts Works!";
 
 /***/ })
 
@@ -142,11 +110,11 @@ document.getElementById("input1").value = "foo.ts Works!";
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// Promise = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"foo": 0
+/******/ 			"fooSecondary": 0
 /******/ 		};
 /******/ 		
 /******/ 		var deferredModules = [
-/******/ 			["./ClientSrc/Scripts/Foo/foo.ts","ClientSrc_Scripts_myCommon_ts"]
+/******/ 			["./ClientSrc/Scripts/Foo/fooSecondary.ts","ClientSrc_Scripts_myCommon_ts"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		
@@ -237,4 +205,4 @@ document.getElementById("input1").value = "foo.ts Works!";
 /******/ 	return __webpack_require__.x();
 /******/ })()
 ;
-//# sourceMappingURL=foo.js.map
+//# sourceMappingURL=fooSecondary.js.map

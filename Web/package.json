@@ -6,6 +6,7 @@
     "d": "webpack --mode development",
     "p": "webpack --mode production",
     "g": "gulp webpack-dev",
+    "gp": "gulp webpack-prod",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly",

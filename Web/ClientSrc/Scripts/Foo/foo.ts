@@ -1,4 +1,4 @@
-
+import {GetNumer} from "../myCommon"
 
 interface Props {
     x: number;
@@ -34,10 +34,11 @@ interface Props {
   value1.setProps({ x: 1000, y: 1000 });
   value1.getProps();
 
-let a : string = "Its string!";
+let a : string = "Its string in FOO!";
 //a = 6;
 
-console.log(a);
+console.log(a + GetNumer());
 
-let t = 123;
-console.log(value.getValue() + '   ' + t); 
+console.log(value.getValue()); 
+
+(document.getElementById("input1") as HTMLInputElement).value = "foo.ts Works!";
