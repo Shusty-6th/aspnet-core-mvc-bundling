@@ -48,21 +48,28 @@ const webpackTask = function (done) {
   });
 };
 
+
+
 const setProdOptions = function (done) {
   webpackOptions.isProduction = true;
-  webpackOptions.testParam = "prod-";
+  webpackOptions.testParam = "prod";
   done();
 };
 
 const setDevOptions = function (done) {
   webpackOptions.isProduction = false;
-  webpackOptions.testParam = "dev-";
+  webpackOptions.testParam = "dev";
   done();
 };
 
-gulp.task("webpack-prod", gulp.series([setProdOptions, webpackTask]));
+const enableWatchOptions = function (done) {
+  webpackOptions.watch = true;
+  done();
+};
 
-gulp.task("webpack-dev", gulp.series([setDevOptions, webpackTask]));
+gulp.task("build-dev", gulp.series([setDevOptions, webpackTask]));
+gulp.task("build-dev:watch", gulp.series([setDevOptions, enableWatchOptions, webpackTask]));
+gulp.task("build-prod", gulp.series([setProdOptions, webpackTask]));
 
 //gulp.task('build', () => {
 //    gulp.src('Scripts/Privacy/privacy.js')

@@ -5,12 +5,13 @@
   "scripts": {
     "d": "webpack --mode development",
     "p": "webpack --mode production",
-    "g": "gulp webpack-dev",
-    "gp": "gulp webpack-prod",
+    "build:dev": "gulp build-dev",
+    "build:dev:watch": "gulp build-dev:watch",
+    "build:prod": "gulp build-prod",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "npm run build:types && npm run build:js"
+    "build": "npm run build:types && npm run build:prod"
   },
   "browserslist": [
     "defaults"
@@ -24,16 +25,18 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "fancy-log": "^1.3.3",
+    "fork-ts-checker-webpack-plugin": "^6.0.4",
     "gulp": "^4.0.2",
+    "html-webpack-plugin": "^5.0.0-alpha.15",
     "node-notifier": "^8.0.0",
     "plugin-error": "^1.0.1",
     "ts-loader": "^8.0.11",
     "typescript": "^4.1.2",
     "webpack": "^5.8.0",
-    "webpack-cli": "^4.2.0",
-    "fork-ts-checker-webpack-plugin": "^6.0.4"
+    "webpack-cli": "^4.2.0"
   },
   "dependencies": {
+    "@types/numeral": "0.0.28",
     "numeral": "^2.0.6"
   }
 }

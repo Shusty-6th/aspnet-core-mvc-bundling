@@ -1,4 +1,4 @@
-import {GetNumer} from "../myCommon"
+import {GetNumer, ComputeNumber} from "../myCommon"
 
 interface Props {
     x: number;
@@ -34,11 +34,10 @@ interface Props {
   value1.setProps({ x: 1000, y: 1000 });
   value1.getProps();
 
-let a : string = "Its string in FOO!";
-//a = 6;
+let a : string = "Its string in FOO!"; 
 
 console.log(a + GetNumer());
 
-console.log(value.getValue()); 
+console.log(ComputeNumber(10)); 
 
 (document.getElementById("input1") as HTMLInputElement).value = "foo.ts Works!";

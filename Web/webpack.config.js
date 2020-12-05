@@ -1,9 +1,12 @@
 ﻿const path = require("path");
 var webpack = require("webpack");
-// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const dirName = "wwwroot/dist/js";
+const partialBundleTemplateFile =
+    "./Views/Shared/_ScriptsBundle.template.cshtml";
 
 exports.config = (webpackOptions) => {
   //module.exports = (env, args) => {
@@ -15,23 +18,21 @@ exports.config = (webpackOptions) => {
       foo: "./ClientSrc/Scripts/Foo/foo.ts",
       fooSecondary: "./ClientSrc/Scripts/Foo/fooSecondary.ts",
     },
-
-    mode: webpackOptions.isProduction === true ? "production" : "development",
     output: {
       filename: "[name].js",
       devtoolModuleFilenameTemplate: "[absolute-resource-path]", //it makes debuging in VS possible //[absolute-resource-path]
-      // publicPath: "/assets/",
       path: path.resolve(__dirname, dirName),
     },
+    mode: webpackOptions.isProduction === true ? "production" : "development",
+    devtool: webpackOptions.isProduction ? "source-map" : "eval-source-map",
     watch: webpackOptions.watch === true,
-    devtool: "source-map",
+
     resolve: {
       extensions: [".ts", ".js"],
     },
     module: {
       rules: [
         {
-          // test: /\.m?js$/,
           test: /\.(js|ts)$/,
           exclude: /node_modules|bower_components/,
           use: {
@@ -46,7 +47,21 @@ exports.config = (webpackOptions) => {
           },
         },
       ],
-    },
+      },
+     plugins: [
+         new CleanWebpackPlugin(),
+          new ForkTsCheckerWebpackPlugin(),
+          new HtmlWebpackPlugin({
+                  inject: false,
+              template: partialBundleTemplateFile,
+                  filename: path.resolve(
+                      __dirname,
+                      `./Views/Shared/_ScriptsBundleForFoo.cshtml`
+                  ),
+              chunks: ['foo'],
+          }),
+      
+         ],
     // plugins: [
     //     new CleanWebpackPlugin(),
     //     // https://stackoverflow.com/a/64612964/3793141
@@ -86,6 +101,7 @@ exports.config = (webpackOptions) => {
     //     },
     //   },
     // },
+
     optimization: {
       splitChunks: {
         chunks: "all",
