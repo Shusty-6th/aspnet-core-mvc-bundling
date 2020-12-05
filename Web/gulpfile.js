@@ -19,7 +19,7 @@ const webpackTask = function (done) {
   webpack(webpackConfig(webpackOptions), (err, stats) => {
     log("[webpackConfig]", webpackOptions);
 
-    if (stats.compilation.errors.length > 0 || err) {
+    if (stats.hasErrors()) {
       let errorMessage =
         stats.compilation.errors[0] != null
           ? stats.compilation.errors[0].message

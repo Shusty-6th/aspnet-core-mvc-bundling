@@ -34,10 +34,10 @@ interface Props {
   value1.setProps({ x: 1000, y: 1000 });
   value1.getProps();
 
-let a : string = "Its string in FOO!"; 
+const a  = "Its string in FOO!";
 
 console.log(a + GetNumer());
 
-console.log(ComputeNumber(10)); 
+console.log(ComputeNumber(10));
 
 (document.getElementById("input1") as HTMLInputElement).value = "foo.ts Works!";
